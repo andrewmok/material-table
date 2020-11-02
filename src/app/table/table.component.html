@@ -1,0 +1,25 @@
+<div class="app-table">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      aria-label="filter"
+      (keyup)="applyFilter($event)"
+      #input
+    >
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of titleSource">
+      <th mat-header-cell *matHeaderCellDef> {{column.title}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column.columnDef]}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+</div>
+
