@@ -13,6 +13,8 @@ import {MatSortModule} from '@angular/material/sort';
 import { TableCellWrapperComponent } from './table-cell-wrapper/table-cell-wrapper.component';
 import { ServiceClassComponent } from './service-class/service-class.component';
 import {AdDirective} from './table-cell-wrapper/ad.directive';
+import {ExpandedDeviceRowComponent} from './expanded-device-row/expanded-device-row.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import {AdDirective} from './table-cell-wrapper/ad.directive';
     TableComponent,
     TableCellWrapperComponent,
     ServiceClassComponent,
+    ExpandedDeviceRowComponent,
     AdDirective
   ],
   imports: [
@@ -30,9 +33,13 @@ import {AdDirective} from './table-cell-wrapper/ad.directive';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatIconModule
   ],
-  entryComponents: [ServiceClassComponent],
+  entryComponents: [
+    ServiceClassComponent,
+    ExpandedDeviceRowComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

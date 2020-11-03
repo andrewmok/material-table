@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {ServiceClassComponent} from './service-class/service-class.component';
 import * as _ from 'lodash';
+import {ExpandedDeviceRowComponent} from './expanded-device-row/expanded-device-row.component';
 
 const TABLE_DATA = [
   {host: 'Apple II Computer', address: '192.168.1.17', segment: 'Home Segment', connection: '1000 Mbit/s', speedLimit: '1000 Mbit/s'},
@@ -44,6 +45,7 @@ const speedSort = (data: Array<any>, direction: string) => {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public expandedComponent = ExpandedDeviceRowComponent;
   public titleSource = [
     {columnDef: 'host', title: 'Host', isSortable: true},
     {columnDef: 'address', title: 'Address', isSortable: true},

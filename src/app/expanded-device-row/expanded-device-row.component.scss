@@ -1,0 +1,26 @@
+.expanded-device-row {
+  max-height: 50px;
+
+  &--wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &--avatar {
+    font-size: 50px;
+    height: 50px;
+    width: 50px;
+  }
+
+  &--info {
+    max-height: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    div {
+      margin-left: 20px;
+      margin-bottom: 5px;
+    }
+  }
+}

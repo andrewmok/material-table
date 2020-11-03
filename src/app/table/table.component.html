@@ -1,4 +1,8 @@
-<div class="app-table">
+<div
+  class="app-table"
+  [ngClass]="{
+    'app-table__expandable': isExpandable
+  }">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input
@@ -12,20 +16,58 @@
   <table
     mat-table
     matSort
+    multiTemplateDataRows
     [dataSource]="dataSource"
   >
-    <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of titleSource">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!column.isSortable"> {{column.title}} </th>
+    <ng-container
+      *ngFor="let column of titleSource"
+      [matColumnDef]="column.columnDef"
+    >
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        [disabled]="!column.isSortable"
+      >
+        {{column.title}}
+      </th>
       <td mat-cell *matCellDef="let element">
         <span *ngIf="!column.isComponent">{{element[column.columnDef]}}</span>
-        <div *ngIf="column.isComponent">
-          <app-table-cell-wrapper [data]="element[column.columnDef]"></app-table-cell-wrapper>
+        <app-table-cell-wrapper
+          *ngIf="column.isComponent"
+          [data]="element[column.columnDef]"
+        >
+        </app-table-cell-wrapper>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail" *ngIf="isExpandable">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+        <div
+          class="app-table__expandable--detail"
+          [@detailExpand]="element == activeElement ? 'expanded' : 'collapsed'"
+        >
+          <app-table-cell-wrapper
+            *ngIf="expandedComponent"
+            [data]="{component: this.expandedComponent, content: element}"
+          >
+          </app-table-cell-wrapper>
         </div>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    <tr
+      mat-row
+      class="app-table--row"
+      *matRowDef="let row; columns: columnsToDisplay;"
+      [ngClass]="{
+        'app-table__expandable--row': isExpandable,
+        'app-table__expandable--row--expanded': activeElement === row
+      }"
+      (click)="isExpandable ? expandRow(row) : null"
+    >
+    </tr>
     <tr class="mat-row" *matNoDataRow>
       <td
         class="mat-cell"
@@ -33,6 +75,12 @@
       >
         No data matching the filter "{{input.value}}"
       </td>
+    </tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: (isExpandable ? ['expandedDetail'] : [])"
+      class="app-table__expandable--detail-row"
+    >
     </tr>
   </table>
   <mat-paginator

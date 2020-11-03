@@ -1,0 +1,18 @@
+<div class="expanded-device-row" *ngIf="content">
+  <div class="expanded-device-row--wrapper">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      class="expanded-device-row--avatar"
+    >
+      computer
+    </mat-icon>
+    <div class="expanded-device-row--info">
+      <div>IP Address: {{content.address}}</div>
+      <div>Segment: {{content.segment}}</div>
+      <div>Connection: {{content.connection}}</div>
+      <div *ngIf="content.speedLimit">Speed Limit: {{content.speedLimit}}</div>
+      <div *ngIf="content.serviceClassNumber">Service class: {{content.serviceClassNumber}}</div>
+    </div>
+  </div>
+</div>

@@ -10,4 +10,33 @@ table {
 .app-table {
   width: 80%;
   margin: auto;
+
+  &__expandable {
+    &--row {
+      cursor: pointer;
+      border-bottom-width: 0;
+
+      td {
+        border-bottom-width: 0;
+      }
+
+      &:hover {
+        background-color: whitesmoke;
+      }
+
+      &:active {
+        background-color: #efefef;
+      }
+    }
+
+    &--detail {
+      overflow: hidden;
+      display: flex;
+      border-bottom-width: 0;
+    }
+
+    &--detail-row {
+      height: 0;
+    }
+  }
 }
