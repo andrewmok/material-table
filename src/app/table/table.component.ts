@@ -38,14 +38,17 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    const defaultSort = this.dataSource.sortData;
+
     this.dataSource.sortData = (data: any, sort: MatSort) => {
       const active = sort.active;
       const direction = sort.direction;
       const columnSource = _.find(this.titleSource, {columnDef: active});
       const customSortFunction = _.get(columnSource, 'customSortFunction', null);
 
-      if (customSortFunction && direction) {
-        return customSortFunction(data, direction);
+      if (direction) {
+        return customSortFunction ? customSortFunction(data, direction) : defaultSort(data, sort);
       }
 
       return data;
