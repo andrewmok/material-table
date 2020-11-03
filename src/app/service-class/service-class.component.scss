@@ -1,0 +1,10 @@
+.service-class-component {
+  display: flex;
+  flex-direction: row;
+
+  &--class {
+    font-size: 2em;
+    color: dodgerblue;
+    margin-right: 10px;
+  }
+}

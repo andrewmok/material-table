@@ -10,11 +10,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { TableCellWrapperComponent } from './table-cell-wrapper/table-cell-wrapper.component';
+import { ServiceClassComponent } from './service-class/service-class.component';
+import {AdDirective} from './table-cell-wrapper/ad.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableComponent
+    TableComponent,
+    TableCellWrapperComponent,
+    ServiceClassComponent,
+    AdDirective
   ],
   imports: [
     BrowserModule,
@@ -26,6 +32,7 @@ import {MatSortModule} from '@angular/material/sort';
     MatPaginatorModule,
     MatSortModule
   ],
+  entryComponents: [ServiceClassComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

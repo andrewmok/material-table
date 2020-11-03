@@ -1,14 +1,15 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import * as _ from 'lodash';
 
-interface ColumnHeaderData {
+export interface ColumnHeaderData {
   columnDef: string; // column ID
   title: string; // title to display
   isSortable?: boolean;
   customSortFunction?: (data: Array<any>, direction: 'asc') => Array<any>;
+  isComponent?: boolean;
 }
 
 @Component({

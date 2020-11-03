@@ -1,0 +1,5 @@
+<div class="service-class-component" *ngIf="content">
+  <div class="service-class-component--class" *ngIf="content.classNumber" [innerHTML]="SERVICE_CLASS_SYMBOLS[content.classNumber]"></div>
+  <div class="service-class-component--limit" *ngIf="content.limit">{{content.limit}}</div>
+  <div *ngIf="!content.classNumber && !content.limit">-</div>
+</div>
